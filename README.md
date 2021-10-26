@@ -1,5 +1,6 @@
 # Nuze
 Put yourself in the news!
+![Screen Shot 2021-10-26 at 12 40 06 PM](https://user-images.githubusercontent.com/7042219/138949511-76883bc9-164e-42ab-bfea-d9ef83e4e8b1.png)
 
 ## Work in Progress...
 I'm currently playing around with this as a way to learn more about [video capture](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia), animation, [Svelte](https://svelte.dev), and video production. Feel free to follow along or fork for your own learning.
