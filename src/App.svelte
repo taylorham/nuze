@@ -1,65 +1,59 @@
 <script lang="ts">
-  import logo from './assets/svelte.png'
-  import Counter from './lib/Counter.svelte'
+  import LowerThird from './components/LowerThird/LowerThird.svelte';
+  import Cam from './components/shared/Cam.svelte';
 </script>
 
-<main>
-  <img src={logo} alt="Svelte Logo" />
-  <h1>Hello Typescript!</h1>
+<div class="container">
+  <main>
+    <div class="video-canvas">
+      <div class="single">
+        <Cam title="taylor" layout="half" />
+      </div>
+      <div class="single">
+        <Cam title="guest" layout="half" />
+      </div>
+    </div>
+    <LowerThird />
+  </main>
+</div>
 
-  <Counter />
-
-  <p>
-    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
-    apps.
-  </p>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
-    the officially supported framework, also powered by Vite!
-  </p>
-</main>
-
-<style>
-  :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+<style lang="scss">
+  .container {
+    position: relative;
+    background: var(--background);
+    height: calc((9 / 16) * (100rem * (2 / 3)));
   }
 
   main {
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
+    position: absolute;
+    inset: 1rem 3rem;
   }
 
-  img {
-    height: 16rem;
-    width: 16rem;
+  .video-canvas {
+    display: flex;
+    padding-top: 3rem;
+    height: 25.1rem;
+    overflow: hidden;
   }
 
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4rem;
-    font-weight: 100;
-    line-height: 1.1;
-    margin: 2rem auto;
-    max-width: 14rem;
+  .single {
+    border: 0.2rem solid hsl(0deg 0% 75%);
+    filter: saturate(1.75) contrast(0.9);
   }
 
-  p {
-    max-width: 14rem;
-    margin: 1rem auto;
-    line-height: 1.35;
+  .single:first-child {
+    border-right: 0.1rem solid hsl(0deg 0% 75%);
   }
 
-  @media (min-width: 480px) {
-    h1 {
-      max-width: none;
-    }
+  .single:nth-child(2) {
+    border-left: 0.1rem solid hsl(0deg 0% 75%);
+  }
 
-    p {
-      max-width: none;
-    }
+  :global(#taylor) {
+    transform: scaleX(-1);
+  }
+
+  :global(#guest) {
+    filter: hue-rotate(290deg);
   }
 </style>
