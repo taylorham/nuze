@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  import { isTickerScrolling } from "../../utilities/stores";
+  import { isTickerScrolling } from "../../utilities/controls";
   import { marquee } from "../../utilities/marquee";
   import ProgramTitle from "./ProgramTitle.svelte";
 

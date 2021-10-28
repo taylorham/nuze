@@ -1,14 +1,14 @@
 <script lang="ts">
-  import Controls from './components/Controls.svelte';
-  import LowerThird from './components/LowerThird/LowerThird.svelte';
-  import Video from './components/shared/Video.svelte';
+  import Controls from "./components/Controls.svelte";
+  import LowerThird from "./components/LowerThird/LowerThird.svelte";
+  import Video from "./components/shared/Video.svelte";
 
-  import { currentVideoLayout } from './utilities/stores';
+  import { currentVideoLayout } from "./utilities/controls";
 </script>
 
 <div class="container">
   <main>
-    <Video layout="{$currentVideoLayout}" />
+    <Video layout={$currentVideoLayout} />
     <LowerThird />
   </main>
 </div>

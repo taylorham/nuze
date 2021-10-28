@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
-  import { isCameraActive } from '../../utilities/stores';
+  import { onMount, onDestroy } from "svelte";
+  import { isCameraActive } from "../../utilities/controls";
 
   export let title;
   export let videoDimensions;
@@ -42,7 +42,7 @@
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->
-<video id="{title}" height="100%" width="auto" playsinline></video>
+<video id={title} height="100%" width="auto" playsinline />
 
 <style lang="scss">
   video {

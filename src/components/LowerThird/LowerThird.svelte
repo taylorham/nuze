@@ -16,7 +16,7 @@
     tickerNews={[
       [
         `facebook has seriously screwed the pooch, according to new leaks being dubbed the "facebook papers"`,
-        `thousands of pages of documents, obtained by the washington post, detail a myriad of sordid findings`,
+        `thousands of pages of documents obtained by the washington post detail a myriad of sordid findings`,
         `human trafficking, drug sales, extremism, and more were allowed to run rampant on the platform for years`,
       ],
     ]}

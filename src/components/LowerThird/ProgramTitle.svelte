@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { programTitle } from "../../utilities/stores";
+  import { programTitle } from "../../utilities/controls";
 </script>
 
 <aside>

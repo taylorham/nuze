@@ -4,7 +4,7 @@
     currentVideoLayout,
     isTickerScrolling,
     programTitle,
-  } from '../utilities/stores';
+  } from "../utilities/controls";
 
   function toggleCamera() {
     isCameraActive.update((value) => !value);
@@ -19,7 +19,7 @@
   }
 
   function killCams() {
-    const videoElements = Array.from(document.getElementsByTagName('video'));
+    const videoElements = Array.from(document.getElementsByTagName("video"));
     videoElements.forEach((video) => {
       (video.srcObject as MediaStream).getTracks().forEach((track) => {
         track.enabled = false;
@@ -35,12 +35,12 @@
   }
 </script>
 
-<button on:click="{toggleCamera}">Toggle Camera</button>
-<button on:click="{killCams}">Kill Cams</button>
-{#if $currentVideoLayout === 'full'}
-  <button on:click="{() => selectLayout('double')}">Double</button>
+<button on:click={toggleCamera}>Toggle Camera</button>
+<button on:click={killCams}>Kill Cams</button>
+{#if $currentVideoLayout === "full"}
+  <button on:click={() => selectLayout("double")}>Double</button>
 {:else}
-  <button on:click="{() => selectLayout('full')}">Single</button>
+  <button on:click={() => selectLayout("full")}>Single</button>
 {/if}
-<button on:click="{toggleTickerScroll}">Ticker Scroll</button>
-<label>Program Title<input on:input="{setProgramTitle}" type="text" /></label>
+<button on:click={toggleTickerScroll}>Ticker Scroll</button>
+<label>Program Title<input on:input={setProgramTitle} type="text" /></label>
