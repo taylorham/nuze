@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Cam from './Cam.svelte';
+  import Cam from "./Cam.svelte";
 
-  export let layout = 'full';
+  export let layout = "full";
 
   const baseRatio = 1165 / 440;
 
@@ -13,7 +13,7 @@
     eighth: baseRatio,
   };
 
-  function getSize(size = 'full') {
+  function getSize(size = "full") {
     const height = 1080;
 
     return {
@@ -24,12 +24,12 @@
 </script>
 
 <div class="video-container">
-  {#if layout === 'full'}
-    <Cam title="anchor" videoDimensions="{getSize('full')}" />
-  {:else if layout === 'double'}
+  {#if layout === "full"}
+    <Cam title="anchor" videoDimensions={getSize("full")} />
+  {:else if layout === "double"}
     <div class="double-container">
-      <Cam title="anchor" videoDimensions="{getSize('half')}" />
-      <Cam title="guest" videoDimensions="{getSize('half')}" />
+      <Cam title="anchor" videoDimensions={getSize("half")} />
+      <Cam title="guest" videoDimensions={getSize("half")} />
     </div>
   {/if}
 </div>

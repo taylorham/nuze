@@ -5,7 +5,7 @@
 <aside>
   <span class="title">{$programTitle}</span>
   <span class="shine-effect">&nbsp;</span>
-  <span class="highlight">{$programTitle}</span>
+  <span class="glow">{$programTitle}</span>
 </aside>
 
 <style lang="scss">
@@ -50,11 +50,11 @@
     }
   }
 
-  .highlight {
+  .glow {
     position: absolute;
     color: transparent;
     background-color: var(--ticker-show-background);
-    text-shadow: 0 0 0.25rem rgba(255, 250, 225, 0.9);
+    text-shadow: 0 0 0.2rem rgba(255, 250, 225, 0.9);
   }
 
   @keyframes shine {

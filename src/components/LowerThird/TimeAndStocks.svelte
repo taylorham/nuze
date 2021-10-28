@@ -1,29 +1,43 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
-  import { formatTime } from "../../utilities/helpers";
+  import { onMount } from "svelte";
+  import TimeDisplay from "./TimeDisplay.svelte";
+  import { currentTime } from "../../utilities/controls";
 
-  let currentTime = new Date();
+  const times = ["New_York", "Los_Angeles"];
+  const stocks = [];
+  let items = [...times, ...stocks];
 
-  $: eastern = formatTime(currentTime, "New_York");
-  $: pacific = formatTime(currentTime, "Los_Angeles");
+  const rotationDuration = 5000;
 
-  setInterval(() => {
-    currentTime = new Date();
-  }, 1000);
+  let firstItemStatus = null;
+  let nextItemStatus = null;
 
-  function rotate(node: HTMLElement) {
-    return {
-      css: (time: number) => `
-        transform: translateX(${time * -100}%);
-      `,
-    };
-  }
+  setInterval(function rotateDisplay() {
+    firstItemStatus = "out";
+    nextItemStatus = "in";
+
+    setTimeout(function rotateItemsInArray() {
+      const [first, ...rest] = items;
+      items = [...rest, first];
+
+      firstItemStatus = "in";
+      nextItemStatus = null;
+    }, 500);
+  }, rotationDuration);
+
+  onMount(() => {
+    firstItemStatus = "in";
+  });
 </script>
 
 <footer>
-  <div>
-    {#each [eastern, pacific] as time}
-      <span>{time}</span>
+  <div id="rotating-container">
+    {#each items as item, i (item)}
+      {#if i === 0}
+        <TimeDisplay class={firstItemStatus} timezone={item} />
+      {:else if i === 1}
+        <TimeDisplay class={nextItemStatus} timezone={item} />
+      {/if}
     {/each}
   </div>
 </footer>
@@ -39,18 +53,33 @@
     overflow: hidden;
   }
 
-  div {
+  #rotating-container {
+    position: relative;
     height: 100%;
     white-space: nowrap;
-  }
 
-  span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 0.3rem;
-    width: 100%;
-    height: 100%;
-    border-right: 0.25rem solid var(--red);
+    & :global(span) {
+      position: absolute;
+      left: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 0.3rem;
+      width: 100%;
+      height: 100%;
+      border-right: 0.25rem solid var(--red);
+      opacity: 1;
+      transition: opacity 0.3s linear, left 0.5s ease;
+    }
+
+    :global(span.in) {
+      left: 0;
+      opacity: 1;
+    }
+
+    :global(span.out) {
+      left: -100%;
+      opacity: 0;
+    }
   }
 </style>

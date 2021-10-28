@@ -2,7 +2,7 @@
   import {
     isCameraActive,
     currentVideoLayout,
-    isTickerScrolling,
+    // isTickerScrolling,
     programTitle,
     isLive,
   } from "../utilities/controls";
@@ -35,10 +35,10 @@
 {:else}
   <button on:click={() => selectLayout("full")}>Fullscreen</button>
 {/if}
-<Field type="checkbox">
+<!-- <Field type="checkbox">
   <input type="checkbox" disabled bind:checked={$isTickerScrolling} />Ticker
   Scroll
-</Field>
+</Field> -->
 <Field type="checkbox">
   <input type="checkbox" bind:checked={$isLive} />Live
 </Field>

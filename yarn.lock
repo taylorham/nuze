@@ -179,7 +179,7 @@ esbuild-android-arm64@0.13.9:
 
 esbuild-darwin-64@0.13.9:
   version "0.13.9"
-  resolved "https://registry.npmjs.org/esbuild-darwin-64/-/esbuild-darwin-64-0.13.9.tgz"
+  resolved "https://registry.yarnpkg.com/esbuild-darwin-64/-/esbuild-darwin-64-0.13.9.tgz#df44297c2438032cda2b21548a82bb007e2105cc"
   integrity sha512-Ay0/b98v0oYp3ApXNQ7QPbaSkCT9WjBU6h8bMB1SYrQ/PmHgwph91fb9V0pfOLKK1rYWypfrNbI0MyT2tWN+rQ==
 
 esbuild-darwin-arm64@0.13.9:
@@ -532,7 +532,7 @@ prettier-plugin-svelte@^2.4.0:
 
 prettier@^2.4.1:
   version "2.4.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.4.1.tgz#671e11c89c14a4cfc876ce564106c4a6726c9f5c"
+  resolved "https://registry.npmjs.org/prettier/-/prettier-2.4.1.tgz"
   integrity sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==
 
 queue-microtask@^1.2.2:
@@ -610,7 +610,7 @@ sander@^0.5.0:
 
 sass@^1.42.1:
   version "1.43.3"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.43.3.tgz#aa16a69131b84f0cd23189a242571e8905f1ce43"
+  resolved "https://registry.npmjs.org/sass/-/sass-1.43.3.tgz"
   integrity sha512-BJnLngqWpMeS65UvlYYEuCb3/fLxDxhHtOB/gWPxs6NKrslTxGt3ZxwIvOe/0Jm4tWwM/+tIpE3wj4dLEhPDeQ==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
