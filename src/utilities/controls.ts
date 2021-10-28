@@ -20,3 +20,8 @@ export const currentTime = writable(new Date());
 setInterval(() => {
   currentTime.set(new Date());
 }, 1000);
+
+// ===== STOCK =====
+export const dowChange = writable(0.0);
+export const nasdaqChange = writable(0.0);
+export const sandpChange = writable(0.0);

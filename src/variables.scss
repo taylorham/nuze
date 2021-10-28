@@ -1,1 +1,21 @@
 /* Variables and mixins declared here will be available in all other SCSS files */
+:root {
+  --black: hsl(0deg 0% 1%);
+  --dark-gray: hsl(0deg 0% 25%);
+  --mid-gray: hsl(0deg 0% 50%);
+  --light-gray: hsl(0deg 0% 75%);
+  --white: hsl(0deg 0% 99%);
+  --red: hsl(0deg 100% 39%);
+  --green: hsl(127deg 99% 35%);
+
+  --background: hsl(240deg 100% 93%);
+  --main: hsl(0deg 100% 93%);
+
+  --app-height: calc(9 / 16 * 100rem * 2 / 3);
+
+  --ticker-height: 1.8rem;
+  --ticker-background: var(--black);
+  --ticker-text-color: var(--white);
+  --ticker-show-background: var(--mid-gray);
+  --ticker-show-text-color: var(--white);
+}

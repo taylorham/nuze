@@ -1,10 +1,10 @@
 <script lang="ts">
   export let headline = "";
-  export let subtitle = "";
+  export let tagline = "";
 
-  let showCredentials = true;
+  let showTagline = true;
 
-  const [name, credentials] = subtitle.split("|").map((item) => item.trim());
+  const [name, credentials] = tagline.split("|").map((item) => item.trim());
 </script>
 
 <section>
@@ -12,7 +12,7 @@
   <article>
     <span>{headline}</span>
   </article>
-  <footer style="--footer-height: {showCredentials ? '2.25rem' : '0'}">
+  <footer style="--footer-height: {showTagline ? '2.25rem' : '0'}">
     <span>{name}</span><span>{credentials}</span>
   </footer>
 </section>

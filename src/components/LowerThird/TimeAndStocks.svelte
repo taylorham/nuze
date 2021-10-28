@@ -1,11 +1,25 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, SvelteComponent } from "svelte";
+  import StockDisplay from "./StockDisplay.svelte";
   import TimeDisplay from "./TimeDisplay.svelte";
-  import { currentTime } from "../../utilities/controls";
 
-  const times = ["New_York", "Los_Angeles"];
-  const stocks = [];
-  let items = [...times, ...stocks];
+  type DataItem = {
+    Component: SvelteComponent;
+    value: string;
+  };
+
+  type DataCollection = Array<DataItem>;
+
+  const times: DataCollection = [
+    { Component: TimeDisplay, value: "New_York" },
+    { Component: TimeDisplay, value: "Los_Angeles" },
+  ];
+  const stocks: DataCollection = [
+    { Component: StockDisplay, value: "Dow" },
+    { Component: StockDisplay, value: "Nasdaq" },
+    { Component: StockDisplay, value: "S&P" },
+  ];
+  $: items = [...times, ...stocks];
 
   const rotationDuration = 5000;
 
@@ -32,11 +46,11 @@
 
 <footer>
   <div id="rotating-container">
-    {#each items as item, i (item)}
-      {#if i === 0}
-        <TimeDisplay class={firstItemStatus} timezone={item} />
-      {:else if i === 1}
-        <TimeDisplay class={nextItemStatus} timezone={item} />
+    {#each items as { Component, value }, i (value)}
+      {#if i === 2}
+        <Component class={firstItemStatus} {value} />
+      {:else if i === 3}
+        <Component class={nextItemStatus} {value} />
       {/if}
     {/each}
   </div>
@@ -58,26 +72,24 @@
     height: 100%;
     white-space: nowrap;
 
-    & :global(span) {
+    & > :global(div) {
       position: absolute;
       left: 100%;
       display: inline-flex;
       align-items: center;
       justify-content: flex-end;
-      padding-right: 0.3rem;
       width: 100%;
       height: 100%;
-      border-right: 0.25rem solid var(--red);
       opacity: 1;
       transition: opacity 0.3s linear, left 0.5s ease;
     }
 
-    :global(span.in) {
+    :global(div.in) {
       left: 0;
       opacity: 1;
     }
 
-    :global(span.out) {
+    :global(div.out) {
       left: -100%;
       opacity: 0;
     }
