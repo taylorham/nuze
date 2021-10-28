@@ -26,8 +26,6 @@
     flex-direction: column;
     justify-content: space-between;
     width: calc(100% - 6.8rem);
-    position: relative;
-    margin-top: 1.65rem;
   }
 
   header {

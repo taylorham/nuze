@@ -1,22 +1,19 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  import { isTickerScrolling } from "../../utilities/controls";
   import { marquee } from "../../utilities/marquee";
   import ProgramTitle from "./ProgramTitle.svelte";
 
   export let tickerNews = [];
 
   onMount(() => {
-    const contents = document.getElementById("marquee");
-
-    marquee(contents);
+    marquee(document.getElementById("marquee"));
   });
 </script>
 
 <footer>
   <section id="marquee-container">
-    <span id="marquee" style={$isTickerScrolling ? "" : "animation: none;"}>
+    <span id="marquee">
       {#each tickerNews as article}
         <article>
           {#each article as sentence, i}

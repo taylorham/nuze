@@ -4,18 +4,12 @@
     currentVideoLayout,
     isTickerScrolling,
     programTitle,
+    isLive,
   } from "../utilities/controls";
-
-  function toggleCamera() {
-    isCameraActive.update((value) => !value);
-  }
+  import Field from "./shared/Field.svelte";
 
   function selectLayout(layout: string) {
     currentVideoLayout.set(layout);
-  }
-
-  function toggleTickerScroll() {
-    isTickerScrolling.update((value) => !value);
   }
 
   function killCams() {
@@ -27,20 +21,28 @@
       });
       video.srcObject = null;
     });
-  }
 
-  function setProgramTitle(event: Event) {
-    const title = (event.target as HTMLInputElement).value;
-    programTitle.set(title);
+    isCameraActive.set(false);
   }
 </script>
 
-<button on:click={toggleCamera}>Toggle Camera</button>
+<Field type="checkbox">
+  <input type="checkbox" bind:checked={$isCameraActive} />Camera on
+</Field>
 <button on:click={killCams}>Kill Cams</button>
 {#if $currentVideoLayout === "full"}
-  <button on:click={() => selectLayout("double")}>Double</button>
+  <button on:click={() => selectLayout("double")}>Side-by-Side</button>
 {:else}
-  <button on:click={() => selectLayout("full")}>Single</button>
+  <button on:click={() => selectLayout("full")}>Fullscreen</button>
 {/if}
-<button on:click={toggleTickerScroll}>Ticker Scroll</button>
-<label>Program Title<input on:input={setProgramTitle} type="text" /></label>
+<Field type="checkbox">
+  <input type="checkbox" disabled bind:checked={$isTickerScrolling} />Ticker
+  Scroll
+</Field>
+<Field type="checkbox">
+  <input type="checkbox" bind:checked={$isLive} />Live
+</Field>
+<Field>
+  Program Title
+  <input bind:value={$programTitle} type="text" />
+</Field>
