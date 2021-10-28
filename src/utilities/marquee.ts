@@ -4,7 +4,7 @@ function convertRemToPx(rem: number): number {
   return rem * parseFloat(remSize);
 }
 
-function getOffset(element: HTMLElement): number {
+function getScrolledAmount(element: HTMLElement): number {
   const currentTransform = element.style.transform;
   const transformAmount = currentTransform.replace(/[^0-9.]/g, "");
 
@@ -15,23 +15,39 @@ export function marquee(contents: HTMLSpanElement) {
   const contentsWidth = contents.offsetWidth;
 
   let start = 0;
-  let previousTimestamp = 0;
+
+  let pauseStart = 0;
+  let pauseDuration = 0;
+
+  contents.addEventListener("mouseenter", () => {
+    pauseStart = window.performance.now();
+  });
+
+  contents.addEventListener("mouseleave", () => {
+    pauseDuration = window.performance.now() - pauseStart;
+  });
 
   function step(timestamp: number) {
-    const contentsOffset = getOffset(contents);
+    const contentsScrolledAmount = getScrolledAmount(contents);
+    const isFullyScrolled = contentsWidth < Math.abs(contentsScrolledAmount);
+    const isRunning = !pauseStart;
+    const shouldResume = Boolean(pauseDuration);
 
-    if (start === 0 || contentsWidth < Math.abs(contentsOffset)) {
+    if (start === 0 || isFullyScrolled) {
       start = timestamp;
+    } else if (shouldResume) {
+      start = start + pauseDuration;
+      pauseStart = 0;
+      pauseDuration = 0;
     }
 
     const elapsed = timestamp - start;
 
-    if (previousTimestamp !== timestamp) {
+    if (isRunning) {
       const count = -0.007 * elapsed;
       contents.style.transform = `translateX(${count}rem)`;
     }
 
-    previousTimestamp = timestamp;
     window.requestAnimationFrame(step);
   }
 
