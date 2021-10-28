@@ -19,14 +19,15 @@
 
 <style lang="scss">
   section {
+    --border: 0.45rem solid var(--red);
+
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: calc(100% - 7.3rem);
+    width: calc(100% - 6.8rem);
     position: relative;
     margin-top: 1.65rem;
-    border-left: 0.45rem solid var(--red);
   }
 
   header {
@@ -34,7 +35,6 @@
     display: flex;
     align-items: center;
     bottom: 100%;
-    left: -0.45rem;
     height: 2.25rem;
     padding: 0 1rem;
     color: var(--white);
@@ -50,7 +50,7 @@
     align-items: center;
     flex: 1;
     padding: 0 0.45rem;
-    margin-left: -0.1rem;
+    border-left: var(--border);
     background: var(--white);
     font-size: 2.4rem;
     font-weight: 600;
@@ -67,8 +67,8 @@
     display: flex;
     align-items: center;
     height: var(--footer-height);
-    margin-left: -0.1rem;
     padding: 0 0.75rem;
+    border-left: var(--border);
     background: var(--black);
     color: var(--white);
     font-size: 1.7rem;

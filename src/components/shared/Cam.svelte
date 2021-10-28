@@ -1,55 +1,53 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
+  import { isCameraActive } from '../../utilities/stores';
 
-  export let title = 'anchor';
-  export let layout = 'full';
+  export let title;
+  export let videoDimensions;
 
-  const baseRatio = 1060 / 435;
+  let videoElement = null;
+  let videoStream = null;
 
-  const ratios = {
-    full: 16 / 9,
-    half: baseRatio / 2,
-    third: baseRatio / 3,
-    quarter: baseRatio,
-    eighth: baseRatio,
-  };
+  function loadVideo() {
+    navigator.mediaDevices
+      .getUserMedia({ audio: false, video: videoDimensions })
+      .then((stream) => {
+        videoStream = stream;
+        videoElement.srcObject = stream;
+        videoElement.play();
+      })
+      .catch((error) => console.error(error));
+  }
 
-  const divisors = {
-    full: 1,
-    half: 2,
-    third: 3,
-    quarter: 1,
-    eighth: 1,
-  };
+  function destroyVideo() {
+    if (videoStream) {
+      videoStream.getTracks().forEach((track: MediaStreamTrack) => {
+        track.enabled = false;
+        track.stop();
+      });
+      videoElement.srcObject = null;
+      videoStream = null;
+    }
+  }
 
-  function getSize(size = 'full') {
-    const height = 1080;
-
-    const dimensions = {
-      height,
-      width: height * ratios[size],
-    };
-
-    console.log({ dimensions });
-
-    return dimensions;
+  $: if ($isCameraActive) {
+    loadVideo();
+  } else {
+    destroyVideo();
   }
 
   onMount(() => {
-    const videoEl = document.getElementById(title) as HTMLVideoElement;
-
-    navigator.mediaDevices
-      .getUserMedia({ audio: false, video: getSize(layout) })
-      .then((stream) => (videoEl.srcObject = stream))
-      .catch((error) => console.error(error));
+    videoElement = document.getElementById(title) as HTMLVideoElement;
   });
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->
-<video id="{title}" height="100%" width="auto" playsinline autoplay></video>
+<video id="{title}" height="100%" width="auto" playsinline></video>
 
 <style lang="scss">
   video {
+    flex: 1;
     object-fit: cover;
+    filter: saturate(1.25);
   }
 </style>

@@ -24,13 +24,10 @@
 
 <style lang="scss">
   div {
-    --padding: 0.3rem;
-
     display: flex;
     justify-content: center;
-    width: calc(100% - (2 * var(--padding)));
-    padding: 0 var(--padding);
-    height: 4rem;
+    width: 100%;
+    padding: 0 0.6rem;
     background-color: var(--white);
   }
 </style>

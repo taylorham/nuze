@@ -1,12 +1,15 @@
 <script lang="ts">
-  import { isTickerScrolling, programTitle } from "../../utilities/stores";
+  import { isTickerScrolling, programTitle } from '../../utilities/stores';
 
   export let tickerNews = [];
 </script>
 
 <footer>
   <section>
-    <span class="marquee" style={$isTickerScrolling ? "" : "animation: none;"}>
+    <span
+      class="marquee"
+      style="{$isTickerScrolling ? '' : 'animation: none;'}"
+    >
       {#each tickerNews as article}
         <article>
           {#each article as sentence, i}
@@ -44,8 +47,6 @@
     overflow: hidden;
 
     .marquee {
-      display: inline-block;
-      padding-left: 100%;
       animation: 1000s linear 0s infinite normal forwards running marquee;
 
       p {
@@ -111,7 +112,7 @@
 
     @keyframes marquee {
       from {
-        transform: translateX(0);
+        transform: translateX(58rem);
       }
       to {
         transform: translateX(-6666rem);

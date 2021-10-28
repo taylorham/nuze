@@ -25,8 +25,7 @@
     width: 6.4rem;
 
     & :global(svg) {
-      background-color: var;
-      width: inherit;
+      background-color: var(--white);
       height: 4rem;
       object-fit: cover;
     }

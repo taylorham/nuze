@@ -1,55 +1,32 @@
 <script lang="ts">
+  import Controls from './components/Controls.svelte';
   import LowerThird from './components/LowerThird/LowerThird.svelte';
-  import Cam from './components/shared/Cam.svelte';
+  import Video from './components/shared/Video.svelte';
+
+  import { currentVideoLayout } from './utilities/stores';
 </script>
 
 <div class="container">
   <main>
-    <div class="video-canvas">
-      <div class="single">
-        <Cam title="taylor" layout="half" />
-      </div>
-      <div class="single">
-        <Cam title="guest" layout="half" />
-      </div>
-    </div>
+    <Video layout="{$currentVideoLayout}" />
     <LowerThird />
   </main>
 </div>
+<Controls />
 
 <style lang="scss">
   .container {
     position: relative;
     background: var(--background);
-    height: calc((9 / 16) * (100rem * (2 / 3)));
+    height: var(--app-height);
   }
 
   main {
     position: absolute;
-    inset: 1rem 3rem;
+    inset: 3rem 3rem 1rem;
   }
 
-  .video-canvas {
-    display: flex;
-    padding-top: 3rem;
-    height: 25.1rem;
-    overflow: hidden;
-  }
-
-  .single {
-    border: 0.2rem solid hsl(0deg 0% 75%);
-    filter: saturate(1.75) contrast(0.9);
-  }
-
-  .single:first-child {
-    border-right: 0.1rem solid hsl(0deg 0% 75%);
-  }
-
-  .single:nth-child(2) {
-    border-left: 0.1rem solid hsl(0deg 0% 75%);
-  }
-
-  :global(#taylor) {
+  :global(#anchor) {
     transform: scaleX(-1);
   }
 
