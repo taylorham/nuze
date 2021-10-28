@@ -1,27 +1,25 @@
 <script lang="ts">
-  import HeadlineBlock from './HeadlineBlock.svelte';
-
-  import LogoBlock from './LogoBlock.svelte';
-
-  import Ticker from './Ticker.svelte';
+  import HeadlineBlock from "./HeadlineBlock.svelte";
+  import LogoBlock from "./LogoBlock.svelte";
+  import Ticker from "./Ticker.svelte";
 </script>
 
 <section>
   <div>
     <HeadlineBlock
-      headline="{`"I didn't know it was wrong": Jon Hamm eats Hawaiian pizza`}"
-      subtitle="{`Doug H. Tosser | Professor of Pizza at Paisano's Pies`}"
+      headline={`"I didn't know it was wrong": Jon Hamm eats Hawaiian pizza`}
+      subtitle={`Doug H. Tosser | Professor of Pizza at Paisano's Pies`}
     />
     <LogoBlock />
   </div>
   <Ticker
-    tickerNews="{[
+    tickerNews={[
       [
         `facebook has seriously screwed the pooch, according to new leaks being dubbed the "facebook papers"`,
-        `we really don't deserve any better, turns out`,
-        `why are we still surprised?`,
+        `thousands of pages of documents, obtained by the washington post, detail a myriad of sordid findings`,
+        `human trafficking, drug sales, extremism, and more were allowed to run rampant on the platform for years`,
       ],
-    ]}"
+    ]}
   />
 </section>
 
