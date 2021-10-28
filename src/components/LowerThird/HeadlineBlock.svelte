@@ -13,7 +13,8 @@
     <span>{headline}</span>
   </article>
   <footer style="--footer-height: {showTagline ? '2.25rem' : '0'}">
-    <span class="tagline-main">{name}</span><span class="">{credentials}</span>
+    <span class="tagline-main">{name}</span>
+    <span class="tagline-extra">{credentials}</span>
   </footer>
 </section>
 
@@ -76,11 +77,15 @@
 
     span {
       padding-right: 1rem;
-      margin-right: 1rem;
       height: 1.5rem;
 
-      &:first-child {
-        border-right: 0.2rem solid var(--red);
+      &.tagline-extra {
+        --shrink-to: 90%;
+
+        font-size: var(--shrink-to);
+        line-height: var(--shrink-to);
+        padding-left: 1rem;
+        border-left: 0.2rem solid var(--red);
       }
     }
   }

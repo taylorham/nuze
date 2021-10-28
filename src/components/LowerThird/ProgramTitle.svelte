@@ -38,14 +38,14 @@
         transparent,
         var(--ticker-show-background) 60%
       );
-      animation-duration: 3s;
-      animation-timing-function: linear;
-      animation-delay: 0s;
-      animation-iteration-count: infinite;
-      animation-direction: normal;
-      animation-fill-mode: forwards;
-      animation-play-state: running;
-      animation-name: shine;
+      //animation-duration: 3s;
+      //animation-timing-function: linear;
+      //animation-delay: 0s;
+      //animation-iteration-count: infinite;
+      //animation-direction: normal;
+      //animation-fill-mode: forwards;
+      //animation-play-state: running;
+      //animation-name: shine;
       animation: 3s linear 0s infinite normal forwards running shine;
     }
   }

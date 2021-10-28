@@ -10,10 +10,3 @@
 <div class={className}>
   {formatTime($currentTime, value)}
 </div>
-
-<style lang="scss">
-  div {
-    padding-right: 0.3rem;
-    border-right: 0.25rem solid var(--red);
-  }
-</style>

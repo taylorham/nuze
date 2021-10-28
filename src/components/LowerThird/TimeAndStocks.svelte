@@ -15,9 +15,9 @@
     { Component: TimeDisplay, value: "Los_Angeles" },
   ];
   const stocks: DataCollection = [
-    { Component: StockDisplay, value: "Dow" },
-    { Component: StockDisplay, value: "Nasdaq" },
-    { Component: StockDisplay, value: "S&P" },
+    { Component: StockDisplay, value: "dow" },
+    { Component: StockDisplay, value: "nas" },
+    { Component: StockDisplay, value: "sap" },
   ];
   $: items = [...times, ...stocks];
 
@@ -26,18 +26,22 @@
   let firstItemStatus = null;
   let nextItemStatus = null;
 
-  setInterval(function rotateDisplay() {
-    firstItemStatus = "out";
-    nextItemStatus = "in";
+  function rotateItems() {
+    setInterval(function rotateDisplay() {
+      firstItemStatus = "out";
+      nextItemStatus = "in";
 
-    setTimeout(function rotateItemsInArray() {
-      const [first, ...rest] = items;
-      items = [...rest, first];
+      setTimeout(function rotateItemsInArray() {
+        const [first, ...rest] = items;
+        items = [...rest, first];
 
-      firstItemStatus = "in";
-      nextItemStatus = null;
-    }, 500);
-  }, rotationDuration);
+        firstItemStatus = "in";
+        nextItemStatus = null;
+      }, 1000);
+    }, rotationDuration);
+  }
+
+  rotateItems();
 
   onMount(() => {
     firstItemStatus = "in";
@@ -47,9 +51,9 @@
 <footer>
   <div id="rotating-container">
     {#each items as { Component, value }, i (value)}
-      {#if i === 2}
+      {#if i === 0}
         <Component class={firstItemStatus} {value} />
-      {:else if i === 3}
+      {:else if i === 1}
         <Component class={nextItemStatus} {value} />
       {/if}
     {/each}
@@ -76,6 +80,8 @@
       position: absolute;
       left: 100%;
       display: inline-flex;
+      padding-right: 0.3rem;
+      border-right: 0.25rem solid var(--red);
       align-items: center;
       justify-content: flex-end;
       width: 100%;
