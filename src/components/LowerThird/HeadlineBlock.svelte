@@ -13,7 +13,7 @@
     <span>{headline}</span>
   </article>
   <footer style="--footer-height: {showTagline ? '2.25rem' : '0'}">
-    <span>{name}</span><span>{credentials}</span>
+    <span class="tagline-main">{name}</span><span class="">{credentials}</span>
   </footer>
 </section>
 

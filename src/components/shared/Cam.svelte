@@ -1,16 +1,15 @@
 <script lang="ts">
-  import { onMount, onDestroy } from "svelte";
+  import { onMount } from "svelte";
   import { isCameraActive } from "../../utilities/controls";
 
   export let title;
-  export let videoDimensions;
 
   let videoElement = null;
   let videoStream = null;
 
   function loadVideo() {
     navigator.mediaDevices
-      .getUserMedia({ audio: false, video: videoDimensions })
+      .getUserMedia({ audio: false, video: { width: 1920, height: 1080 } })
       .then((stream) => {
         videoStream = stream;
         videoElement.srcObject = stream;

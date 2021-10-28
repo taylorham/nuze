@@ -8,7 +8,7 @@
   <div>
     <HeadlineBlock
       headline={`"I didn't know it was wrong": Jon Hamm eats Hawaiian pizza`}
-      subtitle={`Doug H. Tosser | Professor of Pizza at Paisano's Pies`}
+      tagline={`Doug H. Tosser | Professor of Pizza at Paisano's Pies`}
     />
     <LogoBlock />
   </div>

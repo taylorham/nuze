@@ -4,7 +4,7 @@
 
 <aside>
   <span class="title">{$programTitle}</span>
-  <span class="shine-effect">&nbsp;</span>
+  <span class="shine">&nbsp;</span>
   <span class="glow">{$programTitle}</span>
 </aside>
 
@@ -26,7 +26,7 @@
       z-index: 2;
     }
 
-    .shine-effect {
+    .shine {
       position: absolute;
       display: inline-block;
       inset: 0;

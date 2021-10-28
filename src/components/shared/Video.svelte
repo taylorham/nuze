@@ -12,24 +12,15 @@
     quarter: baseRatio,
     eighth: baseRatio,
   };
-
-  function getSize(size = "full") {
-    const height = 1080;
-
-    return {
-      height,
-      width: 1920, // height * ratios[size],
-    };
-  }
 </script>
 
 <div class="video-container">
   {#if layout === "full"}
-    <Cam title="anchor" videoDimensions={getSize("full")} />
+    <Cam title="anchor" />
   {:else if layout === "double"}
     <div class="double-container">
-      <Cam title="anchor" videoDimensions={getSize("half")} />
-      <Cam title="guest" videoDimensions={getSize("half")} />
+      <Cam title="anchor" />
+      <Cam title="guest" />
     </div>
   {/if}
 </div>
