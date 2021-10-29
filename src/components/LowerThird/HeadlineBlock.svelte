@@ -1,5 +1,6 @@
 <script lang="ts">
-  export let headline = "";
+  import { headline } from "../../stores/controls";
+
   export let tagline = "";
 
   let showTagline = true;
@@ -10,7 +11,7 @@
 <section>
   <header>Breaking News</header>
   <article>
-    <span>{headline}</span>
+    <span>{$headline}</span>
   </article>
   <footer style="--footer-height: {showTagline ? '2.25rem' : '0'}">
     <span class="tagline-main">{name}</span>
@@ -50,7 +51,7 @@
     flex: 1;
     padding: 0 0.45rem;
     border-left: var(--border);
-    background: var(--white);
+    background: var(--translucent-white);
     font-size: 2.4rem;
     font-weight: 600;
     white-space: nowrap;
@@ -68,7 +69,7 @@
     height: var(--footer-height);
     padding: 0 0.75rem;
     border-left: var(--border);
-    background: var(--black);
+    background: var(--translucent-black);
     color: var(--white);
     font-size: 1.7rem;
     font-weight: 300;

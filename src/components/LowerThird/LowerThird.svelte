@@ -7,7 +7,6 @@
 <section>
   <div>
     <HeadlineBlock
-      headline={`"I didn't know it was wrong": Jon Hamm eats Hawaiian pizza`}
       tagline={`Doug H. Tosser | Professor of Pizza at Paisano's Pies`}
     />
     <LogoBlock />

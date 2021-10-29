@@ -10,8 +10,8 @@
   label {
     display: inline-flex;
     flex-direction: column;
-    margin: 0 1rem;
-    font-size: 0.75rem;
+    margin: 0 1em;
+    font-size: 14px;
 
     &[class^="checkbox"] {
       flex-direction: row;

@@ -3,7 +3,7 @@
   import LowerThird from "./components/LowerThird/LowerThird.svelte";
   import Video from "./components/shared/Video.svelte";
 
-  import { currentVideoLayout } from "./utilities/controls";
+  import { currentVideoLayout } from "./stores/controls";
 </script>
 
 <div class="container">

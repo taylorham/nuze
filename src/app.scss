@@ -1,13 +1,15 @@
 /* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
 @supports (contain: inline-size) {
   html {
-    font-size: 1.5qw;
+    // 0.78125qw = 10px @ 720p
+    font-size: 1.5qw; // 1.5qw = 19.2px @ 720p
   }
 }
 
 @supports not (contain: inline-size) {
   html {
-    font-size: 1.5vw;
+    // 0.78125qw = 10px @ 720p
+    font-size: 1.5vw; // 1.5qw = 19.2px @ 720p
   }
 }
 

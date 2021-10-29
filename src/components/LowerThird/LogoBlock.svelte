@@ -1,7 +1,7 @@
 <script lang="ts">
   import CnnLogo from "../shared/CnnLogo.svelte";
-  import TimeAndStocks from "./TimeAndStocks.svelte";
-  import { isLive } from "../../utilities/controls";
+  import TimeAndStocks from "./TimeAndMarkets.svelte";
+  import { isLive } from "../../stores/controls";
 </script>
 
 <aside>

@@ -3,9 +3,12 @@
     isCameraActive,
     currentVideoLayout,
     // isTickerScrolling,
+    isTimeTickerPaused,
+    timeTickerIndex,
+    headline,
     programTitle,
     isLive,
-  } from "../utilities/controls";
+  } from "../stores/controls";
   import Field from "./shared/Field.svelte";
 
   function selectLayout(layout: string) {
@@ -15,7 +18,7 @@
   function killCams() {
     const videoElements = Array.from(document.getElementsByTagName("video"));
     videoElements.forEach((video) => {
-      (video.srcObject as MediaStream).getTracks().forEach((track) => {
+      (video.srcObject as MediaStream)?.getTracks().forEach((track) => {
         track.enabled = false;
         track.stop();
       });
@@ -36,13 +39,29 @@
   <button on:click={() => selectLayout("full")}>Fullscreen</button>
 {/if}
 <!-- <Field type="checkbox">
-  <input type="checkbox" disabled bind:checked={$isTickerScrolling} />Ticker
+  <input type="checkbox" disabled bind:checked={$isTickerScrolling} />Pause Ticker
   Scroll
 </Field> -->
 <Field type="checkbox">
   <input type="checkbox" bind:checked={$isLive} />Live
 </Field>
 <Field>
+  Headline
+  <input bind:value={$headline} type="text" />
+</Field>
+<Field>
   Program Title
   <input bind:value={$programTitle} type="text" />
 </Field>
+<Field type="checkbox">
+  <input type="checkbox" bind:checked={$isTimeTickerPaused} />Pause Time
+  Rotation
+</Field>
+<button on:click={timeTickerIndex.decrement}>Prev Time Item</button>
+<button on:click={timeTickerIndex.increment}>Next Time Item</button>
+
+<style lang="scss">
+  * {
+    font-size: 14px;
+  }
+</style>

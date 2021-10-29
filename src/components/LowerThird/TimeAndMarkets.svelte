@@ -1,36 +1,38 @@
 <script lang="ts">
-  import { onMount, SvelteComponent } from "svelte";
-  import StockDisplay from "./StockDisplay.svelte";
+  import { SvelteComponent } from "svelte";
+  import { isTimeTickerPaused, timeTickerIndex } from "../../stores/controls";
+  import StockDisplay from "./MarketDisplay.svelte";
   import TimeDisplay from "./TimeDisplay.svelte";
 
   type DataItem = {
-    Component: SvelteComponent;
+    componentType: SvelteComponent;
     value: string;
   };
 
   type DataCollection = Array<DataItem>;
 
   const times: DataCollection = [
-    { Component: TimeDisplay, value: "New_York" },
-    { Component: TimeDisplay, value: "Los_Angeles" },
+    { componentType: TimeDisplay, value: "New_York" },
+    { componentType: TimeDisplay, value: "Los_Angeles" },
   ];
   const stocks: DataCollection = [
-    { Component: StockDisplay, value: "dow" },
-    { Component: StockDisplay, value: "nas" },
-    { Component: StockDisplay, value: "sap" },
+    { componentType: StockDisplay, value: "dow" },
+    { componentType: StockDisplay, value: "nas" },
+    { componentType: StockDisplay, value: "sap" },
   ];
   $: items = [...times, ...stocks];
 
   const rotationDuration = 5000;
 
-  let firstItemStatus = null;
+  let firstItemStatus = "in";
   let nextItemStatus = null;
 
   function rotateItems() {
-    setInterval(function rotateDisplay() {
+    return setInterval(function rotateDisplay() {
       firstItemStatus = "out";
       nextItemStatus = "in";
 
+      // Allow animations to complete before re-rendering with new array
       setTimeout(function rotateItemsInArray() {
         const [first, ...rest] = items;
         items = [...rest, first];
@@ -41,20 +43,28 @@
     }, rotationDuration);
   }
 
-  rotateItems();
+  let rotationInterval = null;
 
-  onMount(() => {
-    firstItemStatus = "in";
-  });
+  $: if ($isTimeTickerPaused) {
+    clearInterval(rotationInterval);
+  } else {
+    rotationInterval = rotateItems();
+  }
+
+  $: currentIndex = ($timeTickerIndex + 1) % items.length;
 </script>
 
 <footer>
   <div id="rotating-container">
-    {#each items as { Component, value }, i (value)}
-      {#if i === 0}
-        <Component class={firstItemStatus} {value} />
-      {:else if i === 1}
-        <Component class={nextItemStatus} {value} />
+    {#each items as { componentType, value }, i (value)}
+      {#if i === currentIndex - 1}
+        <svelte:component
+          this={componentType}
+          class={firstItemStatus}
+          {value}
+        />
+      {:else if i === currentIndex}
+        <svelte:component this={componentType} class={nextItemStatus} {value} />
       {/if}
     {/each}
   </div>
@@ -65,7 +75,7 @@
     height: 1.2rem;
     font-size: 0.85rem;
     font-weight: 500;
-    background: var(--black);
+    background: var(--translucent-black);
     color: var(--white);
     letter-spacing: 0.05rem;
     overflow: hidden;

@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from "svelte";
-
   import { marquee } from "../../utilities/marquee";
   import ProgramTitle from "./ProgramTitle.svelte";
 

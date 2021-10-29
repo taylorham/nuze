@@ -1,10 +1,12 @@
 <script lang="ts">
-  import { dowChange, nasChange, sapChange } from "../../utilities/controls";
+  import { dowChange, nasChange, sapChange } from "../../stores/timeAndMarkets";
   import { onMount } from "svelte";
 
   let className = "";
   export { className as class };
   export let value: "dow" | "nas" | "sap" = "dow";
+
+  const marketName = value.replace(/sap/gi, "s&p").toUpperCase();
 
   let change = 0;
   let isUp = false;
@@ -21,15 +23,19 @@
   });
 </script>
 
-<div class={className} style="--color: {isUp ? 'var(--green)' : 'var(--red)'}">
-  {value.toUpperCase().replace(/sap/g, "S&P")}
+<div
+  class="stock-container {className}"
+  style="--color: {isUp ? 'var(--green)' : 'var(--red)'}"
+>
+  <div class="market-name">{marketName}</div>
   <div class="arrow" class:down={!isUp}><span>▲</span></div>
   <div class="change">{change}</div>
 </div>
 
 <style lang="scss">
-  div:not(.arrow):not(.change) {
-    --center-arrow-vertically: calc(50% - 0.65rem);
+  .stock-container.stock-container {
+    --center-arrow-vertically: calc(50% - 0.6rem);
+
     justify-content: space-between !important;
     padding-right: 0.1rem !important;
     padding-left: 0.25rem;
@@ -38,13 +44,11 @@
 
   .arrow {
     display: inline-block;
-    width: 1rem;
     font-size: 1rem;
     color: var(--color);
 
     > span {
       position: absolute;
-      width: 100%;
       bottom: var(--center-arrow-vertically);
       //animation-duration: 0.13s;
       //animation-timing-function: linear;
@@ -54,7 +58,7 @@
       //animation-fill-mode: forwards;
       //animation-play-state: running;
       //animation-name: arrowShot;
-      animation: 0.13s linear 4.3s 3.5 normal forwards running arrowShot;
+      animation: 0.18s linear 4.3s 2.5 normal forwards running arrowShot;
     }
   }
 
@@ -64,6 +68,7 @@
 
   .change {
     display: inline-block;
+    text-align: right;
     transform: scaleX(0.8);
     transform-origin: right;
   }
