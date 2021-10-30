@@ -36,7 +36,7 @@
     }, 17);
   }
 
-  function rotateItems() {
+  function rotateData() {
     animateAfterTick();
 
     return setInterval(function rotateDisplay() {
@@ -55,11 +55,11 @@
   $: if ($isTimeTickerPaused) {
     clearInterval(rotationInterval);
   } else {
-    rotationInterval = rotateItems();
+    rotationInterval = rotateData();
   }
 
-  const prevIndex = (data.length + ($timeTickerIndex - 1)) % data.length;
-  const currentIndex = $timeTickerIndex % data.length;
+  $: prevIndex = (data.length + ($timeTickerIndex - 1)) % data.length;
+  $: currentIndex = $timeTickerIndex % data.length;
 </script>
 
 <footer>
