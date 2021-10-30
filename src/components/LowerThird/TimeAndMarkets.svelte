@@ -59,7 +59,7 @@
 <footer>
   <div id="rotating-container">
     {#each items as { componentType, value }, i (value)}
-      {#if i === $timeTickerIndex}
+      {#if i === $timeTickerIndex % items.length}
         <svelte:component
           this={componentType}
           class={firstItemStatus}

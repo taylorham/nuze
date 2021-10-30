@@ -13,7 +13,8 @@
   --background: hsl(240deg 100% 93%);
   --main: hsl(0deg 100% 93%);
 
-  --app-height: calc(9 / 16 * 100rem * 2 / 3);
+  --app-width: calc(100rem * 2 / 3);
+  --app-height: calc(9 / 16 * var(--app-width));
 
   --ticker-height: 1.8rem;
   --ticker-background: var(--black);
