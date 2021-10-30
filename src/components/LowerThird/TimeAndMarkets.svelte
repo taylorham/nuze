@@ -29,25 +29,23 @@
   let firstItemStatus = "in";
   let nextItemStatus = null;
 
-  function animateAfterTick() {
-    setTimeout(() => {
-      firstItemStatus = "out";
-      nextItemStatus = "in";
-    }, 17);
-  }
-
-  function rotateData() {
-    animateAfterTick();
-
-    return setInterval(function rotateDisplay() {
+  function animateData() {
+    function rotateData() {
       firstItemStatus = "in";
       nextItemStatus = null;
 
       const [first, ...rest] = data;
       data = [...rest, first];
 
-      animateAfterTick();
-    }, rotationDuration);
+      setTimeout(function animateAfterTick() {
+        firstItemStatus = "out";
+        nextItemStatus = "in";
+      }, 17);
+    }
+
+    rotateData();
+
+    return setInterval(rotateData, rotationDuration);
   }
 
   let rotationInterval = null;
@@ -55,11 +53,11 @@
   $: if ($isTimeTickerPaused) {
     clearInterval(rotationInterval);
   } else {
-    rotationInterval = rotateData();
+    rotationInterval = animateData();
   }
 
-  $: prevIndex = (data.length + ($timeTickerIndex - 1)) % data.length;
-  $: currentIndex = $timeTickerIndex % data.length;
+  $: prevIndex = $timeTickerIndex % data.length;
+  $: currentIndex = ($timeTickerIndex + 1) % data.length;
 </script>
 
 <footer>

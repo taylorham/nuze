@@ -73,13 +73,13 @@
     white-space: nowrap;
     text-transform: uppercase;
 
-    &.show-byline > .headline-scaleY {
-      transform: scaleY(1);
-    }
-
     .headline-scaleY {
       transform: scaleY(1.3);
-      transition: transform 0.2s ease;
+      transition: transform 0.2s linear;
+    }
+
+    &.show-byline > .headline-scaleY {
+      transform: scaleY(1);
     }
 
     .headline-scaleX {
