@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { crossfade } from "svelte/transition";
+  import { fade } from "svelte/transition";
   import { isCameraActive } from "../../stores/controls";
 
   export let title;
@@ -42,12 +42,7 @@
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->
-<video
-  transition:crossfade={{ duration: 250 }}
-  id={title}
-  height="100%"
-  playsinline
-/>
+<video id={title} height="100%" playsinline />
 
 <style lang="scss">
   video {

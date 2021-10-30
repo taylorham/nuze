@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
   import Cam from "./Cam.svelte";
 
   export let layout = "full";
@@ -17,7 +16,9 @@
 
 <div class="video-container {layout}">
   <Cam title="anchor" />
-  <Cam title="guest" />
+  {#if layout === "double"}
+    <Cam title="guest" />
+  {/if}
 </div>
 
 <style lang="scss">
