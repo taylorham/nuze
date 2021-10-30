@@ -22,10 +22,7 @@
     { componentType: StockDisplay, value: "sap" },
   ];
 
-  $: items = [...times];
-  $: if ($marketVisibility.showMarket) {
-    items = [...times, ...stocks];
-  }
+  let items = $marketVisibility.showMarket ? [...times, ...stocks] : [...times];
 
   const rotationDuration = 5000;
 
@@ -62,7 +59,7 @@
 <footer>
   <div id="rotating-container">
     {#each items as { componentType, value }, i (value)}
-      {#if i === currentIndex - 1}
+      {#if i === $timeTickerIndex}
         <svelte:component
           this={componentType}
           class={firstItemStatus}
