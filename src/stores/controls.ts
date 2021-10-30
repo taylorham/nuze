@@ -15,6 +15,12 @@ export const isLive = writable(true);
 export const headline = writable(
   `"I didn't know it was wrong": Jon Hamm eats Hawaiian Pizza`
 );
+export const byline = writable(
+  `Doug H. Tosser | Professor of Pizza at Paisano's Pies`
+);
+export const isBylineVisible = writable(false);
+export const tagline = writable("Breaking News");
+export const isTaglineVisible = writable(true);
 
 // ===== TICKER ====
 export const isTickerPaused = writable(false);

@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { SvelteComponent } from "svelte";
+  import { onMount, SvelteComponent } from "svelte";
   import { isTimeTickerPaused, timeTickerIndex } from "../../stores/controls";
+  import { marketVisibility } from "../../stores/timeAndMarkets";
   import StockDisplay from "./MarketDisplay.svelte";
   import TimeDisplay from "./TimeDisplay.svelte";
 
@@ -20,7 +21,11 @@
     { componentType: StockDisplay, value: "nas" },
     { componentType: StockDisplay, value: "sap" },
   ];
-  $: items = [...times, ...stocks];
+
+  $: items = [...times];
+  $: if ($marketVisibility.showMarket) {
+    items = [...times, ...stocks];
+  }
 
   const rotationDuration = 5000;
 
@@ -34,11 +39,11 @@
 
       // Allow animations to complete before re-rendering with new array
       setTimeout(function rotateItemsInArray() {
-        const [first, ...rest] = items;
-        items = [...rest, first];
-
         firstItemStatus = "in";
         nextItemStatus = null;
+
+        const [first, ...rest] = items;
+        items = [...rest, first];
       }, 1000);
     }, rotationDuration);
   }

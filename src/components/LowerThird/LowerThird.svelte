@@ -6,9 +6,7 @@
 
 <section>
   <div>
-    <HeadlineBlock
-      tagline={`Doug H. Tosser | Professor of Pizza at Paisano's Pies`}
-    />
+    <HeadlineBlock />
     <LogoBlock />
   </div>
   <Ticker

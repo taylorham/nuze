@@ -2,8 +2,7 @@
 :root {
   --black: hsl(0deg 0% 1%);
   --translucent-black: hsl(0deg 0% 0% / 90%);
-  --dark-gray: hsl(0deg 0% 25%);
-  --translucent-dark-gray: hsl(0deg 0% 29% / 90%);
+  --dark-gray: hsl(0deg 0% 29%);
   --mid-gray: hsl(0deg 0% 50%);
   --light-gray: hsl(0deg 0% 75%);
   --white: hsl(0deg 0% 99%);
@@ -19,6 +18,6 @@
   --ticker-height: 1.8rem;
   --ticker-background: var(--black);
   --ticker-text-color: var(--white);
-  --ticker-show-background: var(--translucent-dark-gray);
+  --ticker-show-background: var(--dark-gray);
   --ticker-show-text-color: var(--white);
 }
