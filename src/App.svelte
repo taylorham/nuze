@@ -19,6 +19,7 @@
     position: relative;
     background: var(--background);
     height: var(--app-height);
+    overflow: hidden;
   }
 
   main {
