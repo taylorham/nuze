@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, SvelteComponent } from "svelte";
+  import { SvelteComponent } from "svelte";
   import { isTimeTickerPaused, timeTickerIndex } from "../../stores/controls";
   import { marketVisibility } from "../../stores/timeAndMarkets";
   import StockDisplay from "./MarketDisplay.svelte";
@@ -22,26 +22,31 @@
     { componentType: StockDisplay, value: "sap" },
   ];
 
-  let items = $marketVisibility.showMarket ? [...times, ...stocks] : [...times];
+  let data = $marketVisibility.showMarket ? [...times, ...stocks] : [...times];
 
   const rotationDuration = 5000;
 
   let firstItemStatus = "in";
   let nextItemStatus = null;
 
-  function rotateItems() {
-    return setInterval(function rotateDisplay() {
+  function animateAfterTick() {
+    setTimeout(() => {
       firstItemStatus = "out";
       nextItemStatus = "in";
+    }, 17);
+  }
 
-      // Allow animations to complete before re-rendering with new array
-      setTimeout(function rotateItemsInArray() {
-        firstItemStatus = "in";
-        nextItemStatus = null;
+  function rotateItems() {
+    animateAfterTick();
 
-        const [first, ...rest] = items;
-        items = [...rest, first];
-      }, 1000);
+    return setInterval(function rotateDisplay() {
+      firstItemStatus = "in";
+      nextItemStatus = null;
+
+      const [first, ...rest] = data;
+      data = [...rest, first];
+
+      animateAfterTick();
     }, rotationDuration);
   }
 
@@ -53,13 +58,14 @@
     rotationInterval = rotateItems();
   }
 
-  $: currentIndex = ($timeTickerIndex + 1) % items.length;
+  const prevIndex = (data.length + ($timeTickerIndex - 1)) % data.length;
+  const currentIndex = $timeTickerIndex % data.length;
 </script>
 
 <footer>
   <div id="rotating-container">
-    {#each items as { componentType, value }, i (value)}
-      {#if i === $timeTickerIndex % items.length}
+    {#each data as { componentType, value }, i (value)}
+      {#if i === prevIndex}
         <svelte:component
           this={componentType}
           class={firstItemStatus}

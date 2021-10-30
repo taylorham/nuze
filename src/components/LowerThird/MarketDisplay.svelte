@@ -52,13 +52,13 @@
       bottom: var(--center-arrow-vertically);
       //animation-duration: 0.13s;
       //animation-timing-function: linear;
-      //animation-delay: 4.3s; // long delay accounts for time offscreen
+      //animation-delay: 0.3s;
       //animation-iteration-count: 3.5;
       //animation-direction: normal;
       //animation-fill-mode: forwards;
       //animation-play-state: running;
       //animation-name: arrowShot;
-      animation: 0.18s linear 4.3s 2.5 normal forwards running arrowShot;
+      animation: 0.18s linear 0.3s 2.5 normal forwards running arrowShot;
     }
   }
 
