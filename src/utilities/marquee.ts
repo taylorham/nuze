@@ -1,3 +1,5 @@
+import { debounce } from "./helpers";
+
 function convertRemToPx(rem: number): number {
   const remSize = getComputedStyle(document.documentElement).fontSize;
 
@@ -12,7 +14,14 @@ function getScrolledAmount(element: HTMLElement): number {
 }
 
 export function marquee(contents: HTMLSpanElement) {
-  const contentsWidth = contents.offsetWidth;
+  let contentsWidth = contents.offsetWidth;
+
+  window.addEventListener(
+    "resize",
+    debounce(() => {
+      contentsWidth = contents.offsetWidth;
+    })
+  );
 
   let start = 0;
 

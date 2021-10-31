@@ -35,3 +35,13 @@ export function getMarketVisibility(date) {
     showMarket: hour24 > 930 && hour24 < 1800,
   };
 }
+
+export function debounce(func, time = 100) {
+  let timer;
+  return function (event) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(func, time, event);
+  };
+}
