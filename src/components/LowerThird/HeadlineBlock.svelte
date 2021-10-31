@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount, beforeUpdate, afterUpdate, onDestroy } from "svelte";
   import {
     headline,
     byline,
@@ -6,8 +7,31 @@
     tagline,
     isTaglineVisible,
   } from "../../stores/controls";
+  import { debounce, fitText } from "../../utilities/helpers";
 
   const [name, credentials] = $byline.split("|").map((item) => item.trim());
+
+  function adjustTextWidth() {
+    const textElement = document.getElementsByClassName(
+      "headline-scaleY"
+    )[0] as HTMLDivElement;
+
+    fitText(textElement);
+  }
+
+  onMount(() => {
+    adjustTextWidth();
+
+    window.addEventListener("resize", debounce(adjustTextWidth));
+  });
+
+  afterUpdate(() => {
+    adjustTextWidth();
+  });
+
+  onDestroy(() => {
+    window.removeEventListener("resize", debounce(adjustTextWidth));
+  });
 </script>
 
 <section class="headline-container">
@@ -76,6 +100,7 @@
     background: var(--translucent-white);
     font-size: 2.4rem;
     font-weight: 600;
+    line-height: 1;
     white-space: nowrap;
     text-transform: uppercase;
 
@@ -89,7 +114,7 @@
     }
 
     .headline-scaleX {
-      transform: scaleX(0.64);
+      transform: scaleX(0.8);
       transform-origin: left;
     }
   }

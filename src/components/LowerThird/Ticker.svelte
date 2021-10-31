@@ -1,12 +1,18 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import { marquee } from "../../utilities/marquee";
   import ProgramTitle from "./ProgramTitle.svelte";
 
   export let tickerNews = [];
 
+  let removeResizeListener = null;
+
   onMount(() => {
-    marquee(document.getElementById("marquee"));
+    removeResizeListener = marquee(document.getElementById("marquee"));
+  });
+
+  onDestroy(() => {
+    removeResizeListener();
   });
 </script>
 

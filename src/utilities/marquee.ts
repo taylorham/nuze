@@ -1,10 +1,4 @@
-import { debounce } from "./helpers";
-
-function convertRemToPx(rem: number): number {
-  const remSize = getComputedStyle(document.documentElement).fontSize;
-
-  return rem * parseFloat(remSize);
-}
+import { debounce, convertRemToPx } from "./helpers";
 
 function getScrolledAmount(element: HTMLElement): number {
   const currentTransform = element.style.transform;
@@ -16,12 +10,11 @@ function getScrolledAmount(element: HTMLElement): number {
 export function marquee(contents: HTMLSpanElement) {
   let contentsWidth = contents.offsetWidth;
 
-  window.addEventListener(
-    "resize",
-    debounce(() => {
-      contentsWidth = contents.offsetWidth;
-    })
-  );
+  const resizeHandler = debounce(() => {
+    contentsWidth = contents.offsetWidth;
+  });
+
+  window.addEventListener("resize", resizeHandler);
 
   let start = 0;
   let pauseStart = 0;
@@ -60,4 +53,6 @@ export function marquee(contents: HTMLSpanElement) {
   }
 
   window.requestAnimationFrame(step);
+
+  return () => window.removeEventListener("resize", resizeHandler);
 }
