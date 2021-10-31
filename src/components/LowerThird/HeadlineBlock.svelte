@@ -11,17 +11,23 @@
 </script>
 
 <section class="headline-container">
-  <header class="tagline" class:show={$isTaglineVisible}>{$tagline}</header>
-  <article class="headline" class:show-byline={$isBylineVisible}>
+  <header title="Tagline" class="tagline" class:show={$isTaglineVisible}>
+    {$tagline}
+  </header>
+  <article
+    title="Headline"
+    class="headline"
+    class:show-byline={$isBylineVisible}
+  >
     <div class="headline-scaleY">
       <div class="headline-scaleX">{$headline}</div>
     </div>
   </article>
-  <footer class="byline-container" class:show={$isBylineVisible}>
+  <footer title="Byline" class="byline-container" class:show={$isBylineVisible}>
     <div class="byline">
       <span class="byline-main">{name}</span>
       {#if credentials.length}
-        <span class="byline-extra">{credentials}</span>
+        <span title="Credentials" class="byline-extra">{credentials}</span>
       {/if}
     </div>
   </footer>

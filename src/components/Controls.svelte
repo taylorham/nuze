@@ -12,6 +12,7 @@
     isTaglineVisible,
     programTitle,
     isLive,
+    showMarkets,
   } from "../stores/controls";
   import Field from "./shared/Field.svelte";
 
@@ -52,9 +53,6 @@
   </div>
   <div class="control-group">
     <h3>Headline Block</h3>
-    <Field type="checkbox">
-      <input type="checkbox" bind:checked={$isLive} />Live
-    </Field>
     <Field>
       Headline
       <input bind:value={$headline} type="text" />
@@ -76,9 +74,15 @@
   </div>
   <div class="control-group">
     <h3>Logo Block</h3>
+    <Field type="checkbox">
+      <input type="checkbox" bind:checked={$isLive} />Live
+    </Field>
     <Field>
       Program Title
       <input bind:value={$programTitle} type="text" />
+    </Field>
+    <Field type="checkbox">
+      <input type="checkbox" bind:checked={$showMarkets} />Show Markets
     </Field>
     <Field type="checkbox">
       <input type="checkbox" bind:checked={$isTimeTickerPaused} />Pause Time
@@ -95,6 +99,7 @@
   .controls {
     font-size: 14px;
     display: flex;
+    flex-wrap: wrap;
 
     & :global(label) {
       margin-bottom: 15px;

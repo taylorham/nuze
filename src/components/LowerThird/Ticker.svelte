@@ -10,7 +10,7 @@
   });
 </script>
 
-<footer>
+<footer title="News Ticker">
   <section id="marquee-container">
     <span id="marquee">
       {#each tickerNews as article}

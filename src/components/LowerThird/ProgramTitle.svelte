@@ -2,7 +2,7 @@
   import { programTitle } from "../../stores/controls";
 </script>
 
-<aside>
+<aside title="Program Title (Name of Show)">
   <span class="title">{$programTitle}</span>
   <span class="shine">&nbsp;</span>
   <span class="glow">{$programTitle}</span>

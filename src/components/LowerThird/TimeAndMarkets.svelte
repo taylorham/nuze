@@ -1,6 +1,10 @@
 <script lang="ts">
   import { SvelteComponent } from "svelte";
-  import { isTimeTickerPaused, timeTickerIndex } from "../../stores/controls";
+  import {
+    isTimeTickerPaused,
+    timeTickerIndex,
+    showMarkets,
+  } from "../../stores/controls";
   import { marketVisibility } from "../../stores/timeAndMarkets";
   import StockDisplay from "./MarketDisplay.svelte";
   import TimeDisplay from "./TimeDisplay.svelte";
@@ -22,7 +26,11 @@
     { componentType: StockDisplay, value: "sap" },
   ];
 
-  let data = $marketVisibility.showMarket ? [...times, ...stocks] : [...times];
+  $: shouldShowMarkets =
+    $showMarkets !== $marketVisibility.showMarket
+      ? $showMarkets
+      : $marketVisibility.showMarket;
+  $: data = shouldShowMarkets ? [...times, ...stocks] : [...times];
 
   const rotationDuration = 5000;
 

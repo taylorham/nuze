@@ -36,12 +36,12 @@ export function getMarketVisibility(date) {
   };
 }
 
-export function debounce(func, time = 100) {
-  let timer;
-  return function (event) {
-    if (timer) {
-      clearTimeout(timer);
+export function debounce(callback, delay = 100) {
+  let timeout;
+  return (event) => {
+    if (timeout) {
+      clearTimeout(timeout);
     }
-    timer = setTimeout(func, time, event);
+    timeout = setTimeout(callback, delay, event);
   };
 }

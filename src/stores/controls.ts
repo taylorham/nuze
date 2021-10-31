@@ -1,4 +1,5 @@
-import { writable } from "svelte/store";
+import { writable, get } from "svelte/store";
+import { marketVisibility } from "./timeAndMarkets";
 
 /**
  * ===== VIDEO =====
@@ -40,3 +41,5 @@ function createTimeTickerIndex() {
   };
 }
 export const timeTickerIndex = createTimeTickerIndex();
+const shouldShowMarkets = get(marketVisibility).showMarket;
+export const showMarkets = writable(shouldShowMarkets);

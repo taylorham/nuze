@@ -1,17 +1,21 @@
 <script lang="ts">
   import CnnLogo from "../shared/CnnLogo.svelte";
-  import TimeAndStocks from "./TimeAndMarkets.svelte";
+  import TimeAndMarkets from "./TimeAndMarkets.svelte";
   import { isLive } from "../../stores/controls";
 </script>
 
 <aside>
-  <div id="live" style="--bottom: {$isLive ? '100%' : 'calc(100% - 1.65rem)'};">
+  <div
+    id="live"
+    title="Live"
+    style="--bottom: {$isLive ? '100%' : 'calc(100% - 1.65rem)'};"
+  >
     {#each "live" as letter}
       <span>{letter}</span>
     {/each}
   </div>
   <CnnLogo />
-  <TimeAndStocks />
+  <TimeAndMarkets />
 </aside>
 
 <style lang="scss">

@@ -7,7 +7,7 @@
   export { className as class };
 </script>
 
-<div class={className}>
+<div class={className} title="{value.replace(/_/g, ' ')} Time">
   {formatTime($currentTime, value)}
 </div>
 

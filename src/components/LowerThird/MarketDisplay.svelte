@@ -26,6 +26,7 @@
 <div
   class="stock-container {className}"
   style="--color: {isUp ? 'var(--green)' : 'var(--red)'}"
+  title="Market display for {marketName}"
 >
   <div class="market-name">{marketName}</div>
   <div class="arrow" class:down={!isUp}><span>▲</span></div>

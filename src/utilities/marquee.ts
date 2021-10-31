@@ -24,15 +24,14 @@ export function marquee(contents: HTMLSpanElement) {
   );
 
   let start = 0;
-
   let pauseStart = 0;
   let pauseDuration = 0;
 
-  contents.addEventListener("mouseenter", () => {
+  contents.parentElement.addEventListener("mouseenter", () => {
     pauseStart = window.performance.now();
   });
 
-  contents.addEventListener("mouseleave", () => {
+  contents.parentElement.addEventListener("mouseleave", () => {
     pauseDuration = window.performance.now() - pauseStart;
   });
 
