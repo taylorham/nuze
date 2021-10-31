@@ -2,7 +2,6 @@
   import {
     isCameraActive,
     currentVideoLayout,
-    // isTickerScrolling,
     isTimeTickerPaused,
     timeTickerIndex,
     headline,
@@ -37,60 +36,35 @@
 <div class="controls">
   <div class="control-group">
     <h3>Cameras</h3>
-    <Field type="checkbox">
-      <input type="checkbox" bind:checked={$isCameraActive} />Camera on
-    </Field>
+    <Field type="checkbox" label="Camera on" value={isCameraActive} />
     <button on:click={killCams}>Disable Webcams</button>
     {#if $currentVideoLayout === "full"}
       <button on:click={() => selectLayout("double")}>Side-by-Side</button>
     {:else}
       <button on:click={() => selectLayout("full")}>Fullscreen</button>
     {/if}
-    <!-- <Field type="checkbox">
-  <input type="checkbox" disabled bind:checked={$isTickerScrolling} />Pause Ticker
-  Scroll
-</Field> -->
   </div>
   <div class="control-group">
     <h3>Headline Block</h3>
-    <Field>
-      Headline
-      <input bind:value={$headline} type="text" />
-    </Field>
-    <Field type="checkbox">
-      <input type="checkbox" bind:checked={$isBylineVisible} />Show Byline
-    </Field>
-    <Field>
-      Byline
-      <input bind:value={$byline} type="text" />
-    </Field>
-    <Field type="checkbox">
-      <input type="checkbox" bind:checked={$isTaglineVisible} />Show Tagline
-    </Field>
-    <Field>
-      Tagline
-      <input bind:value={$tagline} type="text" />
-    </Field>
+    <Field type="text" label="Headline" value={headline} />
+    <Field type="checkbox" label="Show Byline" value={isBylineVisible} />
+    <Field type="text" label="Byline" value={byline} />
+    <Field type="checkbox" label="Show Tagline" value={isTaglineVisible} />
+    <Field type="text" label="Tagline" value={tagline} />
   </div>
   <div class="control-group">
     <h3>Logo Block</h3>
-    <Field type="checkbox">
-      <input type="checkbox" bind:checked={$isLive} />Live
-    </Field>
-    <Field>
-      Program Title
-      <input bind:value={$programTitle} type="text" />
-    </Field>
-    <Field type="checkbox">
-      <input type="checkbox" bind:checked={$showMarkets} />Show Markets
-    </Field>
-    <Field type="checkbox">
-      <input type="checkbox" bind:checked={$isTimeTickerPaused} />Pause Time
-      Rotation
-    </Field>
+    <Field type="checkbox" label="Live" value={isLive} />
+    <Field type="text" label="Program Title" value={programTitle} />
+    <Field type="checkbox" label="Show Markets" value={showMarkets} />
+    <Field
+      type="checkbox"
+      label="Pause Time Rotation"
+      value={isTimeTickerPaused}
+    />
     <div>
-      <button on:click={timeTickerIndex.decrement}>Prev Time Item</button>
-      <button on:click={timeTickerIndex.increment}>Next Time Item</button>
+      <button on:click={$timeTickerIndex.decrement}>Prev Time Item</button>
+      <button on:click={$timeTickerIndex.increment}>Next Time Item</button>
     </div>
   </div>
 </div>

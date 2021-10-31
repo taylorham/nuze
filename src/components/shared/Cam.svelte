@@ -41,7 +41,7 @@
 </script>
 
 <video id={title} {title} height="100%" playsinline>
-  <!-- Keeps my IDE happy by not allowing Prettier to self-close this tag -->
+  <track kind="captions" src="" />
 </video>
 
 <style lang="scss">
