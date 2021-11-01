@@ -94,7 +94,7 @@
   .headline {
     display: flex;
     align-items: center;
-    flex: 1;
+    height: 100%;
     padding: 0 0.45rem;
     border-left: var(--border);
     background: var(--translucent-white);
@@ -103,14 +103,19 @@
     line-height: 1;
     white-space: nowrap;
     text-transform: uppercase;
+    transition: height 0.2s linear;
 
     .headline-scaleY {
       transform: scaleY(1.3);
       transition: transform 0.2s linear;
     }
 
-    &.show-byline > .headline-scaleY {
-      transform: scaleY(1);
+    &.show-byline {
+      height: calc(100% - var(--byline-height));
+
+      & > .headline-scaleY {
+        transform: scaleY(1);
+      }
     }
 
     .headline-scaleX {

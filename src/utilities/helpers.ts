@@ -52,49 +52,82 @@ export function debounce(callback, delay = 100) {
   };
 }
 
-export function fitText(textElement: HTMLDivElement) {
+function getRatioToFit(textElement) {
   const parent = textElement.parentElement;
-  const child = textElement.children[0] as HTMLDivElement;
-  const padding = 2 * parseInt(window.getComputedStyle(parent).paddingLeft, 10);
+  const padding = 4 * parseInt(window.getComputedStyle(parent).paddingLeft, 10);
   const parentWidth = parent.clientWidth - padding;
   const textWidth = textElement.scrollWidth;
   const baseRatio = 0.8;
   const needsShrinking = textWidth * baseRatio > parentWidth;
   const ratio = needsShrinking ? parentWidth / textWidth : baseRatio;
 
-  // if (ratio < 0.5 && ratio > 0.25) {
-  //   const text = textElement.textContent;
-  //   const halfTextLength = Math.ceil(text.length / 2);
-  //   const [first, last] = [
-  //     [...text].slice(0, halfTextLength),
-  //     [...text].slice(halfTextLength),
-  //   ];
-  //   const firstSpace = [...first].reverse().indexOf(" ");
-  //   const lastSpace = last.indexOf(" ");
-  //
-  //   const hyphenateThreshold = 6;
-  //
-  //   if (firstSpace > hyphenateThreshold && lastSpace > hyphenateThreshold) {
-  //     child.innerHTML = `${first.join("")}-<br/>${last.join("")}`;
-  //     textElement.style.transform = "scaleY(1)";
-  //     return true;
-  //   }
-  //
-  //   const indexToSplit =
-  //     firstSpace > lastSpace
-  //       ? halfTextLength + lastSpace
-  //       : halfTextLength - firstSpace;
-  //
-  //   child.innerHTML = `${[...text].slice(0, indexToSplit).join("")}<br/>${[
-  //     ...text,
-  //   ]
-  //     .slice(indexToSplit)
-  //     .join("")}`;
-  //   textElement.style.transform = "scaleY(1)";
-  //   return true;
-  // } else if (ratio <= 0.25) {
-  //   console.error("Text is way too long!");
-  // }
+  return ratio;
+}
+
+export function fitText(textElement: HTMLDivElement) {
+  const child = textElement.children[0] as HTMLDivElement;
+  const ratio = getRatioToFit(textElement);
 
   child.style.transform = `scaleX(${ratio})`;
+}
+
+// The following are WIP attempts to automatically split text to a second line
+export function splitLinesOnPxWidth(textElement) {
+  const parentWidth = textElement.parentElement.clientWidth;
+  const targetClone = textElement.cloneNode(true) as HTMLDivElement;
+  const cloneChild = targetClone.children[0] as HTMLSpanElement;
+  const appendTarget = textElement.children[0];
+  const wordArray = cloneChild.textContent.split(" ");
+
+  cloneChild.innerText = "";
+
+  wordArray.forEach((word, index) => {
+    const wordEl = document.createElement("span");
+    wordEl.innerText = word + " ";
+    wordEl.id = "temp-word-for-width-" + index;
+    cloneChild.appendChild(wordEl);
+  });
+
+  cloneChild.style.position = "absolute";
+  cloneChild.style.zIndex = "-2";
+  cloneChild.style.opacity = "0";
+  cloneChild.style.transform = "scaleX(0.8)";
+  appendTarget.parentElement.appendChild(cloneChild);
+
+  let totalPx = 0;
+  const breakIndices = [];
+
+  const wordWidths = wordArray.map((word, index) => {
+    const wordWidth = document.getElementById(
+      `temp-word-for-width-${index}`
+    ).offsetWidth;
+
+    totalPx += wordWidth;
+
+    if (totalPx > parentWidth) {
+      breakIndices.push(index - 1);
+    }
+
+    return wordWidth;
+  });
+
+  appendTarget.parentElement.removeChild(cloneChild);
+
+  return [
+    wordArray.slice(0, breakIndices[0]).join(" "),
+    wordArray.slice(breakIndices[0]).join(" "),
+  ];
+}
+
+export function fitHeadline(textElement) {
+  const child = textElement.children[0] as HTMLDivElement;
+  const { textContent } = child;
+  const ratio = getRatioToFit(textElement);
+
+  if (ratio < 0.5 && ratio > 0.25) {
+    return splitLinesOnPxWidth(textElement);
+  } else if (ratio <= 0.25) {
+    throw new Error("Text is way too long!");
+  }
+  return [textContent];
 }
