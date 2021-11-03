@@ -4,7 +4,7 @@
 
 <aside title="Program Title (Name of Show)">
   <span class="title">{$programTitle}</span>
-  <span class="shine">&nbsp;</span>
+  <div class="shine">&nbsp;</div>
   <span class="glow">{$programTitle}</span>
 </aside>
 
