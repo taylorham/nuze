@@ -12,8 +12,6 @@
     programTitle,
     isLive,
     showMarkets,
-    identifierLeftData,
-    identifierRightData,
     showIdentifierLeft,
     showIdentifierRight,
     identifierRightCredit,

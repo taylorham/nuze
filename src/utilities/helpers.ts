@@ -19,7 +19,7 @@ export function formatTime(time: Date, locale: string, zone = true) {
     minute: "2-digit",
     timeZone: isAmerica ? `America/${usZones[lowerLocale]}` : locale,
     timeZoneName: "short",
-  } as DateTimeFormatOptions;
+  } as Intl.DateTimeFormatOptions;
 
   if (!zone || !isAmerica) {
     delete options.timeZoneName;
@@ -43,7 +43,7 @@ export function formatTime24Hour(time: Date) {
   return parseInt(formatted, 10);
 }
 
-export function getMarketVisibility(date) {
+export function getMarketVisibility(date: Date) {
   const hour24 = formatTime24Hour(date);
 
   return {
@@ -52,9 +52,9 @@ export function getMarketVisibility(date) {
   };
 }
 
-export function debounce(callback, delay = 100) {
-  let timeout;
-  return (event) => {
+export function debounce(callback: Function, delay = 100) {
+  let timeout: number;
+  return (event: InputEvent) => {
     if (timeout) {
       clearTimeout(timeout);
     }
@@ -62,7 +62,7 @@ export function debounce(callback, delay = 100) {
   };
 }
 
-function getRatioToFit(textElement) {
+function getRatioToFit(textElement: HTMLDivElement) {
   const parent = textElement.parentElement;
   const padding = 4 * parseInt(window.getComputedStyle(parent).paddingLeft, 10);
   const parentWidth = parent.clientWidth - padding;
@@ -82,7 +82,7 @@ export function fitText(textElement: HTMLDivElement) {
 }
 
 // The following are WIP attempts to automatically split text to a second line
-export function splitLinesOnPxWidth(textElement) {
+export function splitLinesOnPxWidth(textElement: HTMLDivElement) {
   const parentWidth = textElement.parentElement.clientWidth;
   const targetClone = textElement.cloneNode(true) as HTMLDivElement;
   const cloneChild = targetClone.children[0] as HTMLSpanElement;
@@ -107,7 +107,7 @@ export function splitLinesOnPxWidth(textElement) {
   let totalPx = 0;
   const breakIndices = [];
 
-  const wordWidths = wordArray.map((word, index) => {
+  wordArray.forEach((_, index) => {
     const wordWidth = document.getElementById(
       `temp-word-for-width-${index}`
     ).offsetWidth;
@@ -129,7 +129,7 @@ export function splitLinesOnPxWidth(textElement) {
   ];
 }
 
-export function fitHeadline(textElement) {
+export function fitHeadline(textElement: HTMLDivElement) {
   const child = textElement.children[0] as HTMLDivElement;
   const { textContent } = child;
   const ratio = getRatioToFit(textElement);

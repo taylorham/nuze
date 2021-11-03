@@ -1,7 +1,7 @@
 <script lang="ts">
-  export let type = "text" as "text" | "checkbox";
-  export let label;
-  export let value;
+  export let type: "text" | "checkbox" = "text";
+  export let label: string;
+  export let value: string;
 </script>
 
 <label class="{type}-input-label" for={label}>

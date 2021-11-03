@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, beforeUpdate, afterUpdate, onDestroy } from "svelte";
+  import { onMount, afterUpdate, onDestroy } from "svelte";
   import {
     headline,
     byline,

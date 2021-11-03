@@ -2,10 +2,10 @@
   import { onMount } from "svelte";
   import { isCameraActive } from "../../stores/controls";
 
-  export let title;
+  export let title: string;
 
-  let videoElement = null;
-  let videoStream = null;
+  let videoElement: HTMLVideoElement = null;
+  let videoStream: MediaStream = null;
 
   function loadVideo() {
     navigator.mediaDevices
