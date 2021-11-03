@@ -12,6 +12,16 @@
     programTitle,
     isLive,
     showMarkets,
+    identifierLeftData,
+    identifierRightData,
+    showIdentifierLeft,
+    showIdentifierRight,
+    identifierRightCredit,
+    identifierLeftCredit,
+    identifierLeftLocation,
+    identifierLeftLocale,
+    identifierRightLocation,
+    identifierRightLocale,
   } from "../stores/controls";
   import Field from "./shared/Field.svelte";
 
@@ -43,6 +53,32 @@
     {:else}
       <button on:click={() => selectLayout("full")}>Fullscreen</button>
     {/if}
+    <h4>Left Video Identifier</h4>
+    <Field
+      type="checkbox"
+      label="Show Left Identifier"
+      value={showIdentifierLeft}
+    />
+    <Field type="text" label="LeftID: Credit" value={identifierLeftCredit} />
+    <Field
+      type="text"
+      label="LeftID: Location"
+      value={identifierLeftLocation}
+    />
+    <Field type="text" label="LeftID: Locale" value={identifierLeftLocale} />
+    <h4>Right Video Identifier</h4>
+    <Field
+      type="checkbox"
+      label="Show Right Identifier"
+      value={showIdentifierRight}
+    />
+    <Field type="text" label="RightID: Credit" value={identifierRightCredit} />
+    <Field
+      type="text"
+      label="RightID: Location"
+      value={identifierRightLocation}
+    />
+    <Field type="text" label="RightID: Locale" value={identifierRightLocale} />
   </div>
   <div class="control-group">
     <h3>Headline Block</h3>

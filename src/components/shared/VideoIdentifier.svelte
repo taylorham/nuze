@@ -11,21 +11,21 @@
 <aside
   class="video-identifier"
   class:right={align === "right"}
-  class:in={show}
-  class:show-credit={credit}
+  class:in={$show}
+  class:show-credit={$credit}
 >
   <div class="identifier-container">
-    {#if credit}
+    {#if $credit}
       <div class="identifier credit">
-        <span><p>{credit}</p></span>
+        <span><p>{$credit}</p></span>
       </div>
     {/if}
-    {#if location}
-      <div class="identifier location"><span><p>{location}</p></span></div>
+    {#if $location}
+      <div class="identifier location"><span><p>{$location}</p></span></div>
     {/if}
-    {#if locale}
+    {#if $locale}
       <div class="identifier locale">
-        <TimeDisplay value={locale} />
+        <TimeDisplay value={$locale} />
       </div>
     {/if}
   </div>
@@ -65,12 +65,13 @@
     .identifier-container {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
       margin: 0 -0.5px;
     }
 
     &:not(.in) {
       border-width: 0 !important;
-      transition: border-width 0.1s linear 0.29s;
+      transition: border-width 0.1s linear 0.45s;
 
       .identifier {
         span,
@@ -94,6 +95,7 @@
 
     &.right {
       right: 0;
+      left: unset;
       border-left: none;
       border-right: var(--border);
 

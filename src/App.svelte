@@ -4,23 +4,34 @@
   import LowerThird from "./components/LowerThird/LowerThird.svelte";
   import Controls from "./components/Controls.svelte";
 
-  import { currentVideoLayout } from "./stores/controls";
+  import {
+    currentVideoLayout,
+    showIdentifierLeft,
+    showIdentifierRight,
+    identifierLeftCredit,
+    identifierLeftLocation,
+    identifierLeftLocale,
+    identifierRightCredit,
+    identifierRightLocation,
+    identifierRightLocale,
+  } from "./stores/controls";
 </script>
 
 <div class="container">
   <main>
     <VideoIdentifier
-      show={true}
+      show={showIdentifierLeft}
       align="left"
-      locale="pacific"
-      location="Los Angeles"
+      credit={identifierLeftCredit}
+      location={identifierLeftLocation}
+      locale={identifierLeftLocale}
     />
     <VideoIdentifier
-      show={true}
+      show={showIdentifierRight}
       align="right"
-      credit="Via WebEx | Cisco"
-      locale="eastern"
-      location="Washington, DC"
+      credit={identifierRightCredit}
+      location={identifierRightLocation}
+      locale={identifierRightLocale}
     />
     <Video layout={$currentVideoLayout} />
     <LowerThird />

@@ -7,6 +7,17 @@ import { marketVisibility } from "./timeAndMarkets";
 export const isCameraActive = writable(true);
 export const currentVideoLayout = writable("full");
 
+export const showIdentifierLeft = writable(false);
+export const showIdentifierRight = writable(false);
+
+export const identifierLeftCredit = writable(null);
+export const identifierLeftLocation = writable("Los Angeles, CA");
+export const identifierLeftLocale = writable("pacific");
+
+export const identifierRightCredit = writable("Via WebEx | Cisco");
+export const identifierRightLocation = writable("Washington, DC");
+export const identifierRightLocale = writable("eastern");
+
 /**
  * == LOWER THIRD ==
  */
