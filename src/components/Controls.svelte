@@ -114,8 +114,13 @@
     }
 
     & :global(button) {
+      font-size: 14px;
       max-width: 190px;
       margin: 5px 8px;
+    }
+
+    & :global(input) {
+      font-size: 14px;
     }
   }
 

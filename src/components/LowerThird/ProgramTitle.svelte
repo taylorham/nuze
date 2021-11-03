@@ -29,6 +29,8 @@
   }
 
   .shine {
+    --transparent: hsl(0deg 0% 29% / 0%);
+
     position: absolute;
     display: inline-block;
     inset: 0;
@@ -37,11 +39,11 @@
     background-image: linear-gradient(
       90deg,
       var(--ticker-show-background) 42%,
-      transparent 47%,
-      transparent 53%,
+      var(--transparent) 47%,
+      var(--transparent) 53%,
       var(--ticker-show-background) 58%
     );
-    //animation-duration: 3s;
+    //animation-duration: 5s;
     //animation-timing-function: linear;
     //animation-delay: 0s;
     //animation-iteration-count: infinite;
@@ -56,7 +58,7 @@
     position: absolute;
     width: 100%;
     text-align: center;
-    color: transparent;
+    color: hsl(0deg 0% 99% / 0%);
     background-color: var(--ticker-show-background);
     text-shadow: 0 0 0.16rem rgba(255, 250, 225, 0.8),
       0 0 0.13rem rgba(255, 250, 225, 0.8);
