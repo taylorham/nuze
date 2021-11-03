@@ -53,7 +53,7 @@
       opacity: 1;
       margin: 0;
       padding: 0;
-      transition: opacity 0.3s linear;
+      transition: opacity 0.3s linear 0.2s;
     }
 
     &.show-credit {
@@ -90,6 +90,7 @@
       p,
       :global(.time-display p) {
         opacity: 0;
+        transition: opacity 0.3s linear;
       }
     }
 
