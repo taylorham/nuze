@@ -1,29 +1,39 @@
-const formattingOptions = {
-  hour: "numeric",
-  minute: "2-digit",
-  timeZoneName: "short",
-} as DateTimeFormatOptions;
-
 export function convertRemToPx(rem: number): number {
   const remSize = window.getComputedStyle(document.documentElement).fontSize;
 
   return rem * parseFloat(remSize);
 }
 
-export function formatTime(time: Date, locale: "New_York" | "Los_Angeles") {
-  return new Intl.DateTimeFormat("en-US", {
-    ...formattingOptions,
-    timeZone: `America/${locale}`,
-  })
+export function formatTime(time: Date, locale: string, zone = true) {
+  const usZones = {
+    eastern: "New_York",
+    central: "Chicago",
+    mountain: "Denver",
+    pacific: "Los_Angeles",
+  };
+  const lowerLocale = locale.toLowerCase();
+  const isAmerica = lowerLocale in usZones;
+
+  const options = {
+    hour: "numeric",
+    minute: "2-digit",
+    timeZone: isAmerica ? `America/${usZones[lowerLocale]}` : locale,
+    timeZoneName: "short",
+  } as DateTimeFormatOptions;
+
+  if (!zone || !isAmerica) {
+    delete options.timeZoneName;
+  }
+
+  return new Intl.DateTimeFormat("en-US", options)
     .format(time)
     .replace(/[SD]/g, "");
 }
 
 export function formatTime24Hour(time: Date) {
-  const { hour, minute } = formattingOptions;
   const formatted = new Intl.DateTimeFormat("en-US", {
-    hour,
-    minute,
+    hour: "numeric",
+    minute: "2-digit",
     hour12: false,
     timeZone: "America/New_York",
   })

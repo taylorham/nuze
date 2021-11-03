@@ -40,14 +40,21 @@
   });
 </script>
 
-<video id={title} {title} height="100%" playsinline>
-  <track kind="captions" src="" />
-</video>
+<div class="cam-container">
+  <video id={title} {title} height="100%" playsinline>
+    <track kind="captions" src="" />
+  </video>
+</div>
 
 <style lang="scss">
+  .cam-container {
+    position: relative;
+    overflow: visible;
+  }
   video {
     flex: 1;
     object-fit: cover;
+    width: 100%;
 
     filter: saturate(1.25);
   }

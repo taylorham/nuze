@@ -2,17 +2,24 @@
   import { formatTime } from "../../utilities/helpers";
   import { currentTime } from "../../stores/timeAndMarkets";
 
-  export let value: "New_York" | "Los_Angeles";
+  let locale: string;
+  export { locale as value };
   let className = "";
   export { className as class };
+  export let showTimeZone = true;
 </script>
 
-<div class={className} title="{value.replace(/_/g, ' ')} Time">
-  {formatTime($currentTime, value)}
+<div class="time-display {className}" title="{locale.replace(/_/g, ' ')} Time">
+  <p>{formatTime($currentTime, locale, showTimeZone)}</p>
 </div>
 
 <style lang="scss">
-  div {
+  .time-display {
     background-color: var(--black);
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
   }
 </style>

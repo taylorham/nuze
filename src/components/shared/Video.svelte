@@ -2,21 +2,11 @@
   import Cam from "./Cam.svelte";
 
   export let layout = "full";
-
-  const baseRatio = 1165 / 440;
-
-  const ratios = {
-    full: 16 / 9,
-    half: baseRatio / 2,
-    third: baseRatio / 3,
-    quarter: baseRatio,
-    eighth: baseRatio,
-  };
 </script>
 
 <div class="video-container {layout}">
   <Cam title="anchor" />
-  {#if layout === "double"}
+  {#if layout !== "full"}
     <Cam title="guest" />
   {/if}
 </div>
@@ -28,7 +18,6 @@
 
     display: flex;
     margin: -4rem -3rem -1rem;
-    overflow: hidden;
     height: 25.1rem;
     padding: 0 2rem;
   }
@@ -36,14 +25,14 @@
   .double {
     margin: 1rem -2rem;
 
-    :global(video) {
+    :global(.cam-container) {
       width: 50%;
       margin-left: -1px;
       box-sizing: content-box;
     }
   }
 
-  :global(video) {
+  :global(.cam-container) {
     border: var(--border);
   }
 

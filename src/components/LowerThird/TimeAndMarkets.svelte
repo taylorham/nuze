@@ -17,8 +17,8 @@
   type DataCollection = Array<DataItem>;
 
   const times: DataCollection = [
-    { componentType: TimeDisplay, value: "New_York" },
-    { componentType: TimeDisplay, value: "Los_Angeles" },
+    { componentType: TimeDisplay, value: "eastern" },
+    { componentType: TimeDisplay, value: "pacific" },
   ];
   const stocks: DataCollection = [
     { componentType: StockDisplay, value: "dow" },

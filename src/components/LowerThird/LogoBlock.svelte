@@ -8,7 +8,7 @@
   <div
     id="live"
     title="Live"
-    style="--bottom: {$isLive ? '100%' : 'calc(100% - 1.65rem)'};"
+    style="--bottom: {$isLive ? '100%' : 'calc(100% - var(--live-height)'};"
   >
     {#each "live" as letter}
       <span>{letter}</span>
@@ -21,6 +21,7 @@
 <style lang="scss">
   aside {
     --width: 6.4rem;
+    --live-height: 1.65rem;
 
     position: relative;
     margin-left: 0.45rem;
@@ -43,7 +44,7 @@
     width: var(--width);
     bottom: var(--bottom);
     z-index: -1;
-    height: 1.65rem;
+    height: var(--live-height);
     padding: 0 0.5rem;
     background: var(--red);
     color: var(--white);
