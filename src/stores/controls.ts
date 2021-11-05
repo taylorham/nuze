@@ -5,10 +5,10 @@ import { marketVisibility } from "./timeAndMarkets";
  * ===== VIDEO =====
  */
 export const isCameraActive = writable(true);
-export const currentVideoLayout = writable("full");
+export const currentVideoLayout = writable("double");
 
-export const showIdentifierLeft = writable(false);
-export const showIdentifierRight = writable(false);
+export const showIdentifierLeft = writable(true);
+export const showIdentifierRight = writable(true);
 
 export const identifierLeftCredit = writable(null);
 export const identifierLeftLocation = writable("Los Angeles, CA");
@@ -30,7 +30,7 @@ export const headline = writable(
 export const byline = writable(
   `Doug H. Tosser | Professor of Pizza at Paisano's Pies`
 );
-export const isBylineVisible = writable(false);
+export const isBylineVisible = writable(true);
 export const tagline = writable("Breaking News");
 export const isTaglineVisible = writable(true);
 

@@ -15,9 +15,11 @@
     identifierRightLocation,
     identifierRightLocale,
   } from "./stores/controls";
+  import AC360 from "./components/Backgrounds/AC360.svelte";
 </script>
 
 <div class="container">
+  <AC360 />
   <main>
     <VideoIdentifier
       show={showIdentifierLeft}
@@ -42,7 +44,6 @@
 <style lang="scss">
   .container {
     position: relative;
-    background: var(--background);
     height: var(--app-height);
     overflow: hidden;
   }

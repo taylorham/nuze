@@ -27,8 +27,11 @@
 
     :global(.cam-container) {
       width: 50%;
-      margin-left: -1px;
       box-sizing: content-box;
+
+      &:not(:first-child) {
+        margin-left: calc(-1 * var(--border-width));
+      }
     }
   }
 
@@ -41,7 +44,7 @@
     margin: -3rem -3rem 0;
     padding: 0;
 
-    :global(#anchor) {
+    :global(.cam-container) {
       width: var(--app-width);
       margin: 0;
       border: none;
