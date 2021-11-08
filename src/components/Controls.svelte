@@ -144,7 +144,7 @@
 <style lang="scss">
   .controls {
     display: flex;
-    height: calc(100vh - var(--app-height));
+    height: clamp(300px, 100vh - var(--app-height), 600px);
     overflow-y: auto;
     font-size: 14px;
 
@@ -153,7 +153,6 @@
       flex: 1;
       flex-wrap: wrap;
       padding: 15px;
-      max-height: calc(100vh - var(--app-height));
 
       & :global(label) {
         margin-bottom: 15px;

@@ -14,7 +14,7 @@ export const identifierLeftCredit = writable(null);
 export const identifierLeftLocation = writable("Los Angeles, CA");
 export const identifierLeftLocale = writable("pacific");
 
-export const identifierRightCredit = writable("Via WebEx | Cisco");
+export const identifierRightCredit = writable("Via | webex by cisco");
 export const identifierRightLocation = writable("Washington, DC");
 export const identifierRightLocale = writable("eastern");
 

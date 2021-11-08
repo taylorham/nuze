@@ -1,11 +1,12 @@
 # Nuze
 
-Put yourself in the news!
+### [Put yourself in the news!](https://taylorham.github.io/nuze)
+
 ![Screen Shot 2021-10-26 at 12 40 06 PM](https://user-images.githubusercontent.com/7042219/138949511-76883bc9-164e-42ab-bfea-d9ef83e4e8b1.png)
 
 ## Work in Progress...
 
-I'm currently playing around with this as a way to learn more about [video capture](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia), animation, [Svelte](https://svelte.dev), and video production. Feel free to follow along or fork for your own learning.
+I'm currently playing around with this project as a way to learn more about [video capture](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia), animation, [Svelte](https://svelte.dev), and video production. Feel free to follow along or fork for your own learning.
 
 ## Goals
 
@@ -26,13 +27,13 @@ I'm using [Vite](https://vitejs.dev/) for the development environment and build 
 
 ## Feature (Todo?) List
 
-- [ ] Layout
+- [-] Layout
   - [-] Lower third
     - [-] Headline Block
       - [ ] Animated Headline transitions
       - [x] Headline text squeezes to fit container
       - [x] Animated Byline and Tagline
-    - [x] Logo Block
+    - [-] Logo Block
       - [ ] Live market data \*
       - [x] Rotate times and stocks
       - [x] Hide stocks when market is closed
@@ -43,14 +44,16 @@ I'm using [Vite](https://vitejs.dev/) for the development environment and build 
   - [-] Video
     - [ ] Size and layout transitions
     - [ ] Multiple layouts
+    - [ ] Download recordings
     - [-] Webcam
       - [ ] Multiple connections \*
+      - [ ] Background replacement
       - [x] Live view
     - [x] Identifier
       - [x] Works with 1-3 lines of data
       - [x] Includes live local time
       - [x] Animated in an out
-- [ ] Controls
+- [-] Controls
   - [-] Basic
     - [ ] Edit ticker text
     - [x] All non-ticker text editable
@@ -60,4 +63,4 @@ I'm using [Vite](https://vitejs.dev/) for the development environment and build 
     - [ ] Multiple views and user roles \*
     - [ ] Synced display across connections \*
 
-<small>\* indicates a feature that needs a backing server</small>
+\* indicates a feature that needs a server to support it, which will be phase-2 once all client-only features are completed
