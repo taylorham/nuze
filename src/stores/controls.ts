@@ -4,7 +4,7 @@ import { marketVisibility } from "./timeAndMarkets";
 /**
  * ===== VIDEO =====
  */
-export const isCameraActive = writable(true);
+export const isCameraActive = writable(false);
 export const currentVideoLayout = writable("double");
 
 export const showIdentifierLeft = writable(true);
